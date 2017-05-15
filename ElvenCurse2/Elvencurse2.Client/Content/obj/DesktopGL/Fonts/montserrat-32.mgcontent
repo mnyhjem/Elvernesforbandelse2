@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/Fonts/montserrat-32.fnt</SourceFile>
+  <SourceTime>2017-05-07T17:03:48.890331+02:00</SourceTime>
+  <DestFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Fonts/montserrat-32.xnb</DestFile>
+  <DestTime>2017-05-07T17:04:07.5561932+02:00</DestTime>
+  <Importer>BitmapFontImporter</Importer>
+  <ImporterTime>2017-03-22T04:47:56+01:00</ImporterTime>
+  <Processor>BitmapFontProcessor</Processor>
+  <ProcessorTime>2017-03-22T04:47:56+01:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

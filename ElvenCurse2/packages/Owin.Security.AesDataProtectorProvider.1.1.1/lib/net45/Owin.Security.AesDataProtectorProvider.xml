@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Owin.Security.AesDataProtectorProvider</name>
+    </assembly>
+    <members>
+        <member name="T:Owin.Security.AesDataProtectorProvider.AesDataProtectorProvider">
+            <summary>
+            Provider AES DataProtectorProvider
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.AesDataProtectorProvider.#ctor(Owin.Security.AesDataProtectorProvider.CrypticProviders.ISha512Factory,Owin.Security.AesDataProtectorProvider.CrypticProviders.ISha256Factory,Owin.Security.AesDataProtectorProvider.CrypticProviders.IAesFactory,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Owin.Security.AesDataProtectorProvider.AesDataProtectorProvider" /> class.
+            </summary>
+            <param name="sha512Factory">The SHA512 factory.</param>
+            <param name="sha256Factory">The SHA256 factory.</param>
+            <param name="aesFactory">The AES factory.</param>
+            <param name="key">The key.</param>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.AesDataProtectorProvider.Create(System.String[])">
+            <summary>
+            Returns a new instance of IDataProtection for the provider.
+            </summary>
+            <param name="purposes">Additional entropy used to ensure protected data may only be unprotected for the correct purposes.</param>
+            <returns>
+            An instance of a data protection service
+            </returns>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.AesDataProtectorProvider.HexStringFromBytes(System.Byte[])">
+            <summary>
+            Convert an array of bytes to a string of hex digits
+            </summary>
+            <param name="bytes">array of bytes</param>
+            <returns>String of hex digits</returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.AesDataProtectorProviderException">
+            <summary>
+            Provides AesDataProtectorProviderException exception
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.AesDataProtectorProviderException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Owin.Security.AesDataProtectorProvider.AesDataProtectorProviderException"/> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.AppBuilderExtensions">
+            <summary>
+            AesDataProtectorProvider IAppBuilder extensions
+            </summary>
+        </member>
+        <member name="P:Owin.Security.AesDataProtectorProvider.AppBuilderExtensions.Sha512Factory">
+            <summary>
+            Gets or sets the SHA512 factory instance.
+            </summary>
+            <value>
+            The SHA512 factory instance.
+            </value>
+            <exception cref="T:System.ArgumentNullException">value</exception>
+        </member>
+        <member name="P:Owin.Security.AesDataProtectorProvider.AppBuilderExtensions.Sha256Factory">
+            <summary>
+            Gets or sets the SHA256 factory instance.
+            </summary>
+            <value>
+            The SHA256 factory instance.
+            </value>
+            <exception cref="T:System.ArgumentNullException">value</exception>
+        </member>
+        <member name="P:Owin.Security.AesDataProtectorProvider.AppBuilderExtensions.AesFactory">
+            <summary>
+            Gets or sets the AES factory instance.
+            </summary>
+            <value>
+            The AES factory instance.
+            </value>
+            <exception cref="T:System.ArgumentNullException">value</exception>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.AppBuilderExtensions.UseAesDataProtectorProvider(Owin.IAppBuilder,System.String,System.Boolean)">
+            <summary>
+            Uses the AES data protector provider as data provider.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="key">The key for encryption/decryption, to use Environment.MachineName as a key should be null.</param>
+            <param name="cspProvilder">If set to <c>true</c> then CSP FIPS-compliant providers will be used instead of managed providers.</param>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.AesCspFactory">
+            <summary>
+            Provides AesCryptoServiceProvider factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.AesCspFactory.Create">
+            <summary>
+            Creates AES CSP implementation instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.AesManagedFactory">
+            <summary>
+            Provides factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.AesManagedFactory.Create">
+            <summary>
+            Creates AES managed implementation instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.IAesFactory">
+            <summary>
+            Represent AES factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.IAesFactory.Create">
+            <summary>
+            Creates AES instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.ISha512Factory">
+            <summary>
+            Represent SHA512 factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.ISha512Factory.Create">
+            <summary>
+            Creates SHA512 instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.ISha256Factory">
+            <summary>
+            Represent SHA256 factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.ISha256Factory.Create">
+            <summary>
+            Creates SHA256 instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.Sha256CspFactory">
+            <summary>
+            Provides SHA256CryptoServiceProvider factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.Sha256CspFactory.Create">
+            <summary>
+            Creates SHA256 CSP instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.Sha256ManagedFactory">
+            <summary>
+            Provides SHA256Managed factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.Sha256ManagedFactory.Create">
+            <summary>
+            Creates SHA256 managed implementation instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.Sha512CspFactory">
+            <summary>
+            Provides SHA512CryptoServiceProvider factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.Sha512CspFactory.Create">
+            <summary>
+            Creates SHA512 CSP implementation instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Owin.Security.AesDataProtectorProvider.CrypticProviders.Sha512ManagedFactory">
+            <summary>
+            Provides SHA512 managed factory
+            </summary>
+        </member>
+        <member name="M:Owin.Security.AesDataProtectorProvider.CrypticProviders.Sha512ManagedFactory.Create">
+            <summary>
+            Creates SHA512 managed implementation instance.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
