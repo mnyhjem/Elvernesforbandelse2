@@ -38,7 +38,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fIMxwAxxZHkMSy5VYvbTB2gHiGKd+f0DUSPfVzh4zsI=</dsig:DigestValue>
+        <dsig:DigestValue>lj5iaKo939cA01ipnePkuC/ZX9pNwhsncgGyZt73qEM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -504,7 +504,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ZW11brnSagIfLRGxbntC23s5ZS6CXRMHMR856MC5h1A=</dsig:DigestValue>
+      <dsig:DigestValue>jcdP2I015mQhc6nVSW24WCoFAeeaRi7mSiPscJzilpQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\abeth.xnb" size="123">
@@ -531,7 +531,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ZMxlWuVtcxcbBDGzwoUVKBAzoMBnIU5cEGce2y7PXyQ=</dsig:DigestValue>
+      <dsig:DigestValue>BLtT0GK02jNheQ4aiccfCzLhDo8yqq6rwrqUuJGdCMc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\Brirfing_theme_0.xnb" size="134">
@@ -558,7 +558,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>gcr/Lw/lMvePk18bfFiXrWyi8/iTtuyULwpp3vfiC8c=</dsig:DigestValue>
+      <dsig:DigestValue>kmA2G815wdjy242qn14cPfTU9JNrnQbVVudoKgmW+ow=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\demo_track_1_0.xnb" size="132">
@@ -585,7 +585,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>D73K9lMzdrmMd6TP5kSuAk+ci1oeLb6oKDlO1zVd4rg=</dsig:DigestValue>
+      <dsig:DigestValue>7YN8hh4cV11enBA3jN9YD0evLlkTNh+pTyewKNu4UJ0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\demo_track_2_0.xnb" size="132">
@@ -612,7 +612,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>RmYqdILNyzQSD1j9o6Rkkt8NwggDa/dEpsOmURE8mfk=</dsig:DigestValue>
+      <dsig:DigestValue>a9EpSUFdxF2jyAlo4O8IZF+QdDKvjj60/vlhiv4wXZg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\Devilish design.xnb" size="133">
@@ -630,7 +630,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>FwR7zRYQ6CQ8CgBRVSIqBb2SaV9yYREnfUAdpR3qP5o=</dsig:DigestValue>
+      <dsig:DigestValue>RNdH0D9W0xE5tKBy+X0k2n48FG5u7h80VV68IGdKzzc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\durante - vergine tutto amore.xnb" size="147">
@@ -657,7 +657,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>oreT1rYBe+19xlgXgr55sMy1akHJNlhK9TItGpwspxY=</dsig:DigestValue>
+      <dsig:DigestValue>/tr78XAzMPzEi1s6NTvJ20qsZvaGHTB61BtMF6FgkTY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\improvisation 1_0.xnb" size="135">
@@ -675,7 +675,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>u6f5WsJaYqYRiahB3yr9w5LJVciqf1ogZySMWqYuC6c=</dsig:DigestValue>
+      <dsig:DigestValue>EYfHJfEkEm1Plk4jZEBXelDBrvaeUpNq0gDgWcfbZ4g=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\medieval.xnb" size="126">
@@ -693,7 +693,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>dXfgF+WEfy4ZpbsN8jRu3FohCngXdgfZK7tqBMU8buA=</dsig:DigestValue>
+      <dsig:DigestValue>uKDHokPhvk0tDTl+8B6K1PxN3hsgK11IKmulDLBkN94=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\ritual-norm_0.xnb" size="131">
@@ -720,7 +720,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>nlOU0cJAUL9/iXVDSWlR7WBWg0jRMUrnQ6d23dlqXUU=</dsig:DigestValue>
+      <dsig:DigestValue>CswyV8zCFgbUE17uK4qtwv43JLagDut/D/g/AigOcp0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\RPG Simple Shop v1_0 (16-bit).xnb" size="147">
@@ -747,7 +747,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>DBWvcWGMU8PMD8XiB1IWVU02aP0aja37/oGbWuAjSxQ=</dsig:DigestValue>
+      <dsig:DigestValue>O81Pc4dOAuRZ135Grd5T+At9+xpGEbQ4dObf/wYVPMg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\TownTheme.xnb" size="127">
@@ -774,7 +774,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>mgHSZnjnkmL2THPhoaM7zIWmCanl/mafTHLm+lWs72I=</dsig:DigestValue>
+      <dsig:DigestValue>zpIXpnN2bJakQiFgZ43aTdnUsA2GOBPPEuBEQVH9Otw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\Track_1_0.xnb" size="127">
@@ -792,7 +792,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>cyqNzxG0Q2yof5MfJy45//DqrNcDTdNF1hMPT87hSi8=</dsig:DigestValue>
+      <dsig:DigestValue>I2ku4Qyd5blV/YL2t4Z7qCUbSSuoqPb3lMTuz2U0pPg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\v312.xnb" size="122">
@@ -819,7 +819,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>d9sFDk+vj+foY7bvZUauHZgrrXrcV3NPMO5tUE70hTI=</dsig:DigestValue>
+      <dsig:DigestValue>2GeEDTJjJXGBF4R5A81bt1Qxn+IT+UwiK+6XTBaRQSk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Music\yesterbreeze.xnb" size="130">

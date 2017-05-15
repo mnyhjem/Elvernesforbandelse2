@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended;
 
 namespace Elvencurse2.Client.Components
@@ -17,6 +18,8 @@ namespace Elvencurse2.Client.Components
 
         private float _timer = 0;
 
+        public float AmbientLevel { get; private set; }
+
         public EnvironmentComponent(ElvenCurse2 game, Camera2D camera)
         {
             _game = game;
@@ -26,6 +29,8 @@ namespace Elvencurse2.Client.Components
 
             LoadContent();
         }
+
+        
 
         public void CalculateAmbientColor(DateTime time, GameTime gameTime)
         {
@@ -40,8 +45,8 @@ namespace Elvencurse2.Client.Components
 
             _timer = 60;
             //new Color(0.1f, 0.1f, 0.2f, 1.0f)
-            var lys = Lysintensitet(TidTilMinutter(time));
-            _ambientColor = new Color(lys, lys, lys + 0.1f, 1f);
+            AmbientLevel = Lysintensitet(TidTilMinutter(time));
+            _ambientColor = new Color(AmbientLevel, AmbientLevel, AmbientLevel + 0.1f, 1f);
         }
 
         private static float Lysintensitet(int tid)

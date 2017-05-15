@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/GameScreens/menuscreen.png</SourceFile>
+  <SourceFile>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/GameScreens/menuscreen.png</SourceFile>
   <SourceTime>2017-05-07T16:56:38.8704477+02:00</SourceTime>
-  <DestFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/GameScreens/menuscreen.xnb</DestFile>
-  <DestTime>2017-05-07T17:00:59.973449+02:00</DestTime>
+  <DestFile>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/GameScreens/menuscreen.xnb</DestFile>
+  <DestTime>2017-05-15T11:53:01.7649986+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

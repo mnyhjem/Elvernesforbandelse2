@@ -56,6 +56,7 @@ namespace Elvencurse2.Client
 
             
             IsMouseVisible = true;
+            //IsFixedTimeStep = false;//<-- framerate lock slået fra til debug
 
             _statemanager = new Statemanager();
             
@@ -143,7 +144,6 @@ namespace Elvencurse2.Client
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             _statemanager.Draw(gameTime);
 
             base.Draw(gameTime);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/Music/demo_track_2_0.mp3</SourceFile>
+  <SourceFile>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/Music/demo_track_2_0.mp3</SourceFile>
   <SourceTime>2017-05-11T11:20:43.2965498+02:00</SourceTime>
-  <DestFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Music/demo_track_2_0.xnb</DestFile>
-  <DestTime>2017-05-11T11:21:24.5503936+02:00</DestTime>
+  <DestFile>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Music/demo_track_2_0.xnb</DestFile>
+  <DestTime>2017-05-15T11:53:09.9723563+02:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Music/demo_track_2_0.ogg</string>
+    <string>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Music/demo_track_2_0.ogg</string>
   </BuildOutput>
 </PipelineBuildEvent>

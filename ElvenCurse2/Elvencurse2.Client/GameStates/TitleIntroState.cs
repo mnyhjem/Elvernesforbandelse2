@@ -39,8 +39,7 @@ namespace ElvenCurse2.Client.GameStates
 
             CreateLoginbox();
 
-            //GameRef.SoundComponent.PlayMusic("medieval");
-            _game.SoundComponent.PlayMusic("improvisation 1_0");
+            //_game.SoundComponent.PlayMusic("improvisation 1_0");// todo slå music til igen
         }
 
         private void CreateLoginbox()

@@ -49,5 +49,10 @@ namespace Elvencurse2.Client.Components
             var name = keys[rnd.Next(0, keys.Count - 1)];
             PlayMusic(name);
         }
+
+        public void StopMusic()
+        {
+            MediaPlayer.Stop();
+        }
     }
 }

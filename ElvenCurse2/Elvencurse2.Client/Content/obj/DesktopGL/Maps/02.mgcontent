@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/Maps/02.tmx</SourceFile>
+  <SourceFile>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/Maps/02.tmx</SourceFile>
   <SourceTime>2017-05-07T19:36:58.7282371+02:00</SourceTime>
-  <DestFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Maps/02.xnb</DestFile>
-  <DestTime>2017-05-07T19:39:36.8508531+02:00</DestTime>
+  <DestFile>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Maps/02.xnb</DestFile>
+  <DestTime>2017-05-15T11:53:02.6166525+02:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2017-03-22T04:47:56+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>

@@ -295,8 +295,7 @@ namespace ElvenCurse2.Client.GameStates
                 $"FPS: {_fpsCounter.FramesPerSecond:0}, Draw Calls: {_game.GraphicsDevice.Metrics.DrawCount}, Texture Count: {_game.GraphicsDevice.Metrics.TextureCount}, Triangle Count: {_game.GraphicsDevice.Metrics.PrimitiveCount}",
                 textPosition, textColor);
             textPosition = baseTextPosition + new Vector2(0, _bitmapFont.LineHeight * 2);
-            _game.SpriteBatch.DrawString(_bitmapFont, $"Camera Position: (x={_camera.Position.X}, y={_camera.Position.Y})",
-                textPosition, textColor);
+            _game.SpriteBatch.DrawString(_bitmapFont, $"Camera Position: (x={_camera.Position.X}, y={_camera.Position.Y}) Ambient={_environment.AmbientLevel}", textPosition, textColor);
 
             //if (!_showHelp)
             //{

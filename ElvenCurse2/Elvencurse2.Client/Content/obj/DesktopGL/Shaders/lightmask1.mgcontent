@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/Shaders/lightmask1.png</SourceFile>
+  <SourceFile>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/Shaders/lightmask1.png</SourceFile>
   <SourceTime>2017-05-15T09:25:20.7332729+02:00</SourceTime>
-  <DestFile>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Shaders/lightmask1.xnb</DestFile>
-  <DestTime>2017-05-15T09:25:41.3833169+02:00</DestTime>
+  <DestFile>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/Elvencurse2.Client/Content/bin/DesktopGL/Shaders/lightmask1.xnb</DestFile>
+  <DestTime>2017-05-15T11:53:43.4940363+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
