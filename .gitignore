@@ -1,13 +1,13 @@
+﻿﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
 *.suo
 *.user
-_ReSharper.*/
-*.sdf
-bin/
-obj/
-Debug/
-Release/
-*.opensdf
-*.tlog
-*.log
-TestResult.xml
-*.VisualState.xml
+_ReSharper.*
+bin
+obj
+packages
+App_Data
+*.dbmdl
+*.jfm
