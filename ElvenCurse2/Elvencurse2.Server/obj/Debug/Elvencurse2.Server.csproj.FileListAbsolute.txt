@@ -107,3 +107,6 @@ C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Server\obj\Debug\Elvencurse2.Server.csproj.Elvencurse2.Server.exe.config
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Server\obj\Debug\Elvencurse2.Server.exe
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Server\obj\Debug\Elvencurse2.Server.pdb
+C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Server\bin\Debug\Elvencurse2.Server.exe.config
+C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Server\bin\Debug\Elvencurse2.Server.exe
+C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Server\bin\Debug\Elvencurse2.Server.pdb
