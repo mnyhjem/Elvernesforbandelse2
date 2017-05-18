@@ -4,10 +4,10 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/ElvenCurse2/Content/Fonts/GameFont.spritefont</File>
-    <File>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/ElvenCurse2/Content/Fonts/InterfaceFont.spritefont</File>
-    <File>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/ElvenCurse2/Content/GameScreens/menuscreen.png</File>
-    <File>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/ElvenCurse2/Content/GameScreens/titlescreen.png</File>
-    <File>C:/sourcecode/mnyhjem.github/ElvenCurse2/ElvenCurse2/ElvenCurse2/Content/Misc/wooden-button.png</File>
+    <File>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/ElvenCurse2/Content/Fonts/GameFont.spritefont</File>
+    <File>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/ElvenCurse2/Content/Fonts/InterfaceFont.spritefont</File>
+    <File>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/ElvenCurse2/Content/GameScreens/menuscreen.png</File>
+    <File>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/ElvenCurse2/Content/GameScreens/titlescreen.png</File>
+    <File>C:/sourcecode/mnyhjem.github/Elvernesforbandelse2-master/ElvenCurse2/ElvenCurse2/Content/Misc/wooden-button.png</File>
   </SourceFiles>
 </SourceFileCollection>

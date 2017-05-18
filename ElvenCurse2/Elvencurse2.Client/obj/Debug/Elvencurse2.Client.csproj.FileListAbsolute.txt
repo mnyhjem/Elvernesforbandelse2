@@ -170,3 +170,4 @@ C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Client\obj\Debug\Elvencurse2.Client.application
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Client\obj\Debug\Elvencurse2.Client.exe
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Client\obj\Debug\Elvencurse2.Client.pdb
+C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Client\obj\Debug\Elvencurse2.Client.TrustInfo.xml
