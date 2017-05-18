@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElvenCurse2", "ElvenCurse2\ElvenCurse2.csproj", "{DF0A2714-D145-4894-B7B2-D2380A23E855}"
 EndProject
@@ -14,6 +14,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elvencurse2.Client", "Elvencurse2.Client\Elvencurse2.Client.csproj", "{9C39C5B3-2159-4359-ACAB-F33476BC7CFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elvencurse2.Website", "Elvencurse2.Website\Elvencurse2.Website.csproj", "{A1341D2F-DF09-433A-88CA-782E7BEFF47F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2859390E-886B-4009-BF12-22617DAFEB89}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
