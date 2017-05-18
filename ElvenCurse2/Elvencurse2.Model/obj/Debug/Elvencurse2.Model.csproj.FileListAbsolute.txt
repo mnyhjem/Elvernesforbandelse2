@@ -43,3 +43,4 @@ C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Model\bin\Debug\SharpDX.MediaFoundation.xml
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Model\obj\Debug\Elvencurse2.Model.dll
 C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Model\obj\Debug\Elvencurse2.Model.pdb
+C:\sourcecode\mnyhjem.github\Elvernesforbandelse2-master\ElvenCurse2\Elvencurse2.Model\obj\Debug\Elvencurse2.Model.csprojResolveAssemblyReference.cache
