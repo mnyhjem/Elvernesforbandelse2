@@ -7,6 +7,6 @@ $ignoreFiles =  gc .gitignore | ?{$_ -notmatch  "#"} |  ?{$_ -match  "\S"} | % {
 $ignoreFiles = $ignoreFiles| ?{$_ -match  "\S"}
 
 # Remove each of these file from Git 
-$ignoreFiles | % { git rm $_}
+$ignoreFiles | % { git rm --cached $_}
 
 git add .
