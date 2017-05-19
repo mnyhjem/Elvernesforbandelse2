@@ -126,6 +126,7 @@ namespace Elvencurse2.Client.Components
             if (key == Keys.Back && UnmaskedText.Length > 0)
             {
                 UnmaskedText = UnmaskedText.Substring(0, Text.Length - 1);
+                UpdateText();
                 return;
             }
 
@@ -155,6 +156,11 @@ namespace Elvencurse2.Client.Components
             }
 
             UnmaskedText += newchar;
+            UpdateText();
+        }
+
+        public void UpdateText()
+        {
             if (!MaskInput)
             {
                 Text = UnmaskedText;

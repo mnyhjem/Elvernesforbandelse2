@@ -60,7 +60,10 @@ namespace ElvenCurse2.Client.GameStates
 
 #if DEBUG
             _txtUsername.Text = "email@martinnyhjem.dk";
+            _txtUsername.UnmaskedText = _txtUsername.Text;
+
             _txtPassword.UnmaskedText = "123456";
+            _txtPassword.Text = "******";
 #endif
         }
 
