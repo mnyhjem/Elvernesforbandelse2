@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Net;
 using Elvencurse2.Model;
 using Microsoft.AspNet.SignalR.Client;
 
@@ -36,6 +37,8 @@ namespace Elvencurse2.Client.Components
         public void Connect()
         {
             var _connection = new HubConnection(_realm);
+            _connection.CookieContainer = new CookieContainer();
+            _connection.CookieContainer.Add(Authentication.AuthCookie);
             //_connection.Closed += _connection_Closed;
             //_connection.ConnectionSlow += _connection_ConnectionSlow;
             //_connection.Error += _connection_Error;

@@ -45,10 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creature.cs" />
+    <Compile Include="Creatures\CharacterAppearance.cs" />
+    <Compile Include="Creatures\CharacterEquipment.cs" />
+    <Compile Include="Creatures\Creaturetype.cs" />
+    <Compile Include="Creatures\Npcs\Bunny.cs" />
+    <Compile Include="Creatures\Npcs\CreatureRace.cs" />
+    <Compile Include="Creatures\Npcs\HunterNpc.cs" />
+    <Compile Include="Creatures\Npcs\Wolf.cs" />
     <Compile Include="Engine\IElvenGame.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Enums\Payloadtype.cs" />
     <Compile Include="Gameobject.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Payload.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,5 +66,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

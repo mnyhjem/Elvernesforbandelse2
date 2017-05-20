@@ -124,6 +124,7 @@ namespace ElvenCurse2.Client.GameStates
                             _player.SetPosition(new Vector2(
                                 payload.Gameobject.Position.X,
                                 payload.Gameobject.Position.Y));
+                            _player.UpdateCameraposition = true;
                         }
                         break;
                     case Payloadtype.Move:// move

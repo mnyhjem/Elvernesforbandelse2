@@ -4,8 +4,14 @@ namespace Elvencurse2.Model
 {
     public class Player : Creature
     {
+        
+
         public Player(IElvenGame elvenGame) : base(elvenGame)
         {
         }
+
+        public int AccumulatedExperience { get; set; }
+
+        
     }
 }

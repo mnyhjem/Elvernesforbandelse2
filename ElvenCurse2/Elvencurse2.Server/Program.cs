@@ -8,10 +8,11 @@ namespace Elvencurse2.Server
 {
     class Program
     {
-        public static ElvenGame Game = new ElvenGame();
+        public static ElvenGame Game;
 
         static void Main(string[] args)
         {
+            Program.Game = new ElvenGame();
 
             Trace.Listeners.RemoveAt(0);
 

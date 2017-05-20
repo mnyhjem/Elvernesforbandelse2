@@ -1,4 +1,6 @@
-﻿using Elvencurse2.Model.Engine;
+﻿using Elvencurse2.Model.Creatures;
+using Elvencurse2.Model.Creatures.Npcs;
+using Elvencurse2.Model.Engine;
 using Elvencurse2.Model.Enums;
 using Microsoft.Xna.Framework;
 
@@ -8,6 +10,21 @@ namespace Elvencurse2.Model
     {
         //private float MoveSpeed = 120f;
         private float _moveSpeed = 140f;
+
+        private int _health;
+        
+        public CreatureRace Race { get; set; }
+
+        public int Level { get; set; }
+        public int Basehealth { get; set; }
+        
+        public Location DefaultLocation { get; set; }
+
+        public CharacterAppearance Appearance { get; set; }
+
+        public CharacterEquipment Equipment { get; set; }
+
+
         public Direction Direction { get; set; }
         public bool IsMoving { get; set; }
 
@@ -16,6 +33,11 @@ namespace Elvencurse2.Model
         public Creature(IElvenGame elvenGame):base(elvenGame)
         {
             
+        }
+
+        public void SetHealth(int newHealth)
+        {
+            _health = newHealth;
         }
 
         public override void Update(Utilities.GameTime gameTime)

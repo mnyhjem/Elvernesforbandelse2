@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Elvencurse2.Engine.Services;
 using Elvencurse2.Model;
 using Elvencurse2.Model.Engine;
 using Elvencurse2.Model.Enums;
@@ -28,8 +29,17 @@ namespace Elvencurse2.Engine
         private long _drawCount = 0;
         private Model.Utilities.GameTime _gameTime;
 
+        private Worldservice _worldservice;
+        private Characterservice _characterservice;
+
         public ElvenGame()
         {
+            Trace.WriteLine($"Server bootup at {DateTime.Now}");
+
+            _worldservice = new Worldservice();
+            _characterservice = new Characterservice(this);
+
+
             GameChanges = new ConcurrentQueue<Payload>();
             Gameobjects = new List<Gameobject>();
 
@@ -39,6 +49,8 @@ namespace Elvencurse2.Engine
             });
 
             _gameTime = new Model.Utilities.GameTime();
+
+            Gameobjects.AddRange(_worldservice.GetAllNpcs());
 
             _gameLoop.Start();
         }
@@ -64,7 +76,7 @@ namespace Elvencurse2.Engine
 
                     //_space.Update();
 
-                    UpdatePlayers(_gameTime);
+                    UpdateGameobjects(_gameTime);
 
                     if (_actualFPS <= DrawFPS || (++_drawCount) % DRAW_AFTER == 0)
                     {
@@ -83,26 +95,31 @@ namespace Elvencurse2.Engine
             }
         }
 
-        private void UpdatePlayers(GameTime gameTime)
+        private void UpdateGameobjects(GameTime gameTime)
         {
-            foreach (var player in Gameobjects)
+            foreach (var gameobject in Gameobjects)
             {
-                player.Update(gameTime);
+                gameobject.Update(gameTime);
             }
         }
 
-        public void EnterWorld(string contextConnectionId)
+        public bool EnterWorld(string userId, string contextConnectionId)
         {
-            var spiller = new Player(this)
+            //var spiller = new Player(this)
+            //{
+            //    ConnectionId = contextConnectionId,
+            //    Position = new Vector2
+            //    {
+            //        X = 200,
+            //        Y = 200
+            //    }
+            //};
+            var spiller = _characterservice.GetOnlineCharacterForUser(userId);
+            if (spiller == null)
             {
-                ConnectionId = contextConnectionId,
-                Position = new Vector2
-                {
-                    X = 200,
-                    Y = 200
-                }
-            };
-
+                return false;
+            }
+            spiller.ConnectionId = contextConnectionId;
             Gameobjects.Add(spiller);
 
             //CurrentHub.Clients.All.Pong(DateTime.Now);//test
@@ -117,6 +134,7 @@ namespace Elvencurse2.Engine
                     Type = Payloadtype.AddPlayer
                 });
             }
+            return true;
         }
 
         private long cnt = 1;
