@@ -408,7 +408,7 @@ namespace ElvenCurse2.Client.Model
 
         private byte[] GetImage(string path)
         {
-            var rootPath = System.Environment.CurrentDirectory + "/Content/Charactersprite/Universal-LPC-spritesheet-master/";
+            var rootPath = System.Environment.CurrentDirectory + "/Content/CS/U/";
             using (var img = Image.FromFile(rootPath + path + ".png"))
             using (var bmp = new Bitmap(img))
             {
