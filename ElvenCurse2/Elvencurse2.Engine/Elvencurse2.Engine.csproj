@@ -64,11 +64,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\Pathfinder.cs" />
     <Compile Include="ElvenGame.cs" />
     <Compile Include="Factories\DbFactory.cs" />
     <Compile Include="HighFrequencyTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Characterservice.cs" />
+    <Compile Include="Services\ItemsService.cs" />
     <Compile Include="Services\Worldservice.cs" />
   </ItemGroup>
   <ItemGroup>

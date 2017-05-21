@@ -12,10 +12,12 @@ namespace Elvencurse2.Engine.Services
     public class Characterservice
     {
         private readonly ElvenGame _elvenGame;
+        private readonly ItemsService _itemsService;
 
-        public Characterservice(ElvenGame elvenGame)
+        public Characterservice(ElvenGame elvenGame, ItemsService itemsService)
         {
             _elvenGame = elvenGame;
+            _itemsService = itemsService;
         }
 
         public Gameobject GetOnlineCharacterForUser(string userId)
@@ -104,8 +106,8 @@ c.IsOnline = 1
             }
             else
             {
-                //var equipment = _itemsService.ReloadCharacterEquipment(Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterEquipment>((string)dr["Equipment"]));
-                //character.Equipment = equipment;
+                var equipment = _itemsService.ReloadCharacterEquipment(Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterEquipment>((string)dr["Equipment"]));
+                character.Equipment = equipment;
             }
 
             return character;

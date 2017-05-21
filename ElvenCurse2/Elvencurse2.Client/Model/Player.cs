@@ -1,4 +1,11 @@
-﻿using Elvencurse2.Model;
+﻿using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
+using System.Net.Mime;
+using System.Threading;
+using Elvencurse2.Model;
+using Elvencurse2.Model.Creatures;
 using Elvencurse2.Model.Engine;
 using Elvencurse2.Model.Enums;
 using Microsoft.Xna.Framework;
@@ -16,13 +23,25 @@ namespace ElvenCurse2.Client.Model
 {
     public class Player : Creature
     {
-        private readonly ContentManager _content;
+        private readonly Elvencurse2.Client.ElvenCurse2 _game;
         private AnimatedSprite _playerSprite;
         private Vector2 _newPosition;
-        
+
+        private Payload _payload;
+
+        public bool IsLoaded { get; set; }
+
+
         public override Vector2 Position
         {
-            get { return _playerSprite.Position; }
+            get
+            {
+                if (_playerSprite == null)
+                {
+                    return new Vector2(0,0);
+                }
+                return _playerSprite.Position;
+            }
         }
 
         public bool UpdateCameraposition { get; set; }
@@ -31,10 +50,12 @@ namespace ElvenCurse2.Client.Model
         {
         }
 
-        public Player(ContentManager content) : base(null)
+        public Player(Elvencurse2.Client.ElvenCurse2 game, Payload payload) : base(null)
         {
-            _content = content;
-            CreatePlayersprite();
+            _game = game;
+            _payload = payload;
+            ThreadPool.QueueUserWorkItem(CreatePlayersprite);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -44,6 +65,11 @@ namespace ElvenCurse2.Client.Model
 
         public bool Update(float deltaSeconds, KeyboardState keyboardState)
         {
+            if (!IsLoaded)
+            {
+                return false;
+            }
+
             //var moveDirection = Vector2.Zero;
             var isMoving = false;
             var moveDirection = Vector2.Zero;
@@ -153,14 +179,34 @@ namespace ElvenCurse2.Client.Model
 
         public void Draw(SpriteBatch spriteBatch, Camera2D camera)
         {
+            if (!IsLoaded)
+            {
+                return;
+            }
+
             spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: camera.GetViewMatrix(), blendState: BlendState.AlphaBlend);
             spriteBatch.Draw(_playerSprite);
             spriteBatch.End();
         }
 
-        private void CreatePlayersprite()
+        private void CreatePlayersprite(object o)
         {
-            var texture = _content.Load<Texture2D>("charactersprite");
+            Texture2D texture;
+            if (_payload == null || ((Creature)_payload.Gameobject).Appearance == null)
+            {
+                texture = _game.Content.Load<Texture2D>("charactersprite");
+            }
+            else
+            {
+                var sw = new Stopwatch();
+                sw.Start();
+                texture = CreateSpritetextureFromPayload(_payload);
+                sw.Stop();
+                Trace.WriteLine(string.Format("Create texture {0}", sw.Elapsed));
+            }
+
+
+            
 
             var atlas = TextureAtlas.Create("characteratlas", texture, 64, 64);
 
@@ -198,6 +244,191 @@ namespace ElvenCurse2.Client.Model
             _playerSprite = new AnimatedSprite(animationfactory);
             _playerSprite.Position = new Vector2(350, 350);
             //_playerSprite.Play("spellcastBack").IsLooping = true;
+
+            IsLoaded = true;
+        }
+
+        
+
+        private Texture2D CreateSpritetextureFromPayload(Payload payload)
+        {
+            var sprite = GetBody(((Creature)payload.Gameobject).Appearance);
+            sprite = GetEquipment(((Creature)payload.Gameobject).Equipment, sprite);
+
+
+            sprite = Merge(sprite, GetImage("weapons/right hand/either/bow"));
+            sprite = Merge(sprite, GetImage("weapons/left hand/either/arrow"));
+
+            Texture2D texture;
+            using (var ms = new MemoryStream(sprite))
+            {
+                texture = Texture2D.FromStream(_game.GraphicsDevice, ms);
+            }
+            
+            return texture;
+        }
+
+        private byte[] GetBody(CharacterAppearance ca)
+        {
+            var image = GetImage($"body/{ca.Sex}/{ca.Body}");
+            image = Merge(image, GetImage($"body/{ca.Sex}/eyes/{ca.Eyecolor}"));
+
+            if (ca.Nose != Nose.Default)
+            {
+                image = Merge(image, GetImage($"body/{ca.Sex}/nose/{ca.Nose}_{ca.Body}"));
+            }
+
+            if (ca.Ears != Ears.Default)
+            {
+                image = Merge(image, GetImage($"body/{ca.Sex}/Ears/{ca.Ears}_{ca.Body}"));
+            }
+
+            if (ca.Hair.Type != Hair.HairType.None)
+            {
+                image = Merge(image, GetImage($"hair/{ca.Sex}/{ca.Hair.Type}/{ca.Hair.Color.ToString().Replace("_", "-")}"));
+            }
+
+            if (ca.Facial.Type != Facial.FacialType.None)
+            {
+                image = Merge(image, GetImage($"facial/{ca.Sex}/{ca.Facial.Type}/{ca.Facial.Color.ToString().Replace("_", "-")}"));
+            }
+
+            return image;
+        }
+
+        private byte[] GetEquipment(CharacterEquipment ce, byte[] sprite)
+        {
+            if (ce == null)
+            {
+                return sprite;
+            }
+
+            if (ce.Head != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Head.Imagepath));
+            }
+
+            if (ce.Chest != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Chest.Imagepath));
+            }
+
+            if (ce.Arms != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Arms.Imagepath));
+            }
+
+            if (ce.Shoulders != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Shoulders.Imagepath));
+            }
+
+            if (ce.Bracers != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Bracers.Imagepath));
+            }
+
+            if (ce.Hands != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Hands.Imagepath));
+            }
+
+            if (ce.Legs != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Legs.Imagepath));
+            }
+
+            if (ce.Feet != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Feet.Imagepath));
+            }
+
+            if (ce.Belt != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Belt.Imagepath));
+            }
+
+            if (ce.Weapon != null)
+            {
+                sprite = Merge(sprite, GetImage(ce.Weapon.Imagepath));
+                // if bow, sæt også weapons\left hand\either\arrow på, så der er en pil på buen..
+                //sprite = Merge(sprite, GetImage(ce.Torso.Imagepath));
+            }
+
+            return sprite;
+            //var image = GetImage($"body/{ca.Sex}/{ca.Body}");
+            //image = Merge(image, GetImage($"body/{ca.Sex}/eyes/{ca.Eyecolor}"));
+
+            //if (ca.Nose != Nose.Default)
+            //{
+            //    image = Merge(image, GetImage($"body/{ca.Sex}/nose/{ca.Nose}_{ca.Body}"));
+            //}
+
+            //if (ca.Ears != Ears.Default)
+            //{
+            //    image = Merge(image, GetImage($"body/{ca.Sex}/Ears/{ca.Ears}_{ca.Body}"));
+            //}
+
+            //if (ca.Hair.Type != Hair.HairType.None)
+            //{
+            //    image = Merge(image, GetImage($"hair/{ca.Sex}/{ca.Hair.Type}/{ca.Hair.Color.ToString().Replace("_", "-")}"));
+            //}
+
+            //if (ca.Facial.Type != Facial.FacialType.None)
+            //{
+            //    image = Merge(image, GetImage($"facial/{ca.Sex}/{ca.Facial.Type}/{ca.Facial.Color.ToString().Replace("_", "-")}"));
+            //}
+
+            //return image;
+        }
+
+        private byte[] Merge(byte[] bytearray1, byte[] bytearray2)
+        {
+            using (var ms1 = new MemoryStream(bytearray1))
+            using (var ms2 = new MemoryStream(bytearray2))
+            {
+                using (var image1 = Image.FromStream(ms1))
+                using (var image2 = Image.FromStream(ms2))
+                {
+                    using (var target = new Bitmap(image1.Width, image1.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
+                    {
+                        using (var graphics = Graphics.FromImage(target))
+                        {
+                            graphics.CompositingMode = CompositingMode.SourceOver; // this is the default, but just to be clear
+
+                            graphics.DrawImage(image1, 0, 0);
+                            graphics.DrawImage(image2, 0, 0);
+
+                            return ImageToByteArray(target);
+                        }
+                    }
+                }
+            }
+        }
+
+        private byte[] GetImage(string path)
+        {
+            var rootPath = System.Environment.CurrentDirectory + "/Content/Charactersprite/Universal-LPC-spritesheet-master/";
+            using (var img = Image.FromFile(rootPath + path + ".png"))
+            using (var bmp = new Bitmap(img))
+            {
+                return ImageToByteArray(bmp);
+            }
+        }
+
+        private static byte[] ReadFully(Stream input)
+        {
+            using (var ms = new MemoryStream())
+            {
+                input.CopyTo(ms);
+                return ms.ToArray();
+            }
+        }
+
+        private static byte[] ImageToByteArray(Image img)
+        {
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
 
         public void SetPosition(Vector2 position)

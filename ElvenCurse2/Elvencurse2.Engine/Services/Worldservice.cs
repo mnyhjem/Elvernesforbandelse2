@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using Dapper;
 using Elvencurse2.Engine.Factories;
 using Elvencurse2.Model;
 using Elvencurse2.Model.Creatures;
@@ -13,9 +11,11 @@ namespace Elvencurse2.Engine.Services
 {
     public class Worldservice
     {
-        public Worldservice()
+        private readonly ItemsService _itemsService;
+
+        public Worldservice(ItemsService itemsService)
         {
-            
+            _itemsService = itemsService;
         }
 
 
@@ -116,8 +116,8 @@ left outer join NpcLocations loc on npc.Id = loc.NpcId
             }
             else
             {
-                //var equipment = _itemsService.ReloadCharacterEquipment(Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterEquipment>((string)dr["Equipment"]));
-                //npc.Equipment = equipment;
+                var equipment = _itemsService.ReloadCharacterEquipment(Newtonsoft.Json.JsonConvert.DeserializeObject<CharacterEquipment>((string)dr["Equipment"]));
+                npc.Equipment = equipment;
             }
 
             return npc;

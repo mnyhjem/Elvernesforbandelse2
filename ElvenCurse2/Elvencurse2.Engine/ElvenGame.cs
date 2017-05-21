@@ -8,7 +8,6 @@ using Elvencurse2.Model;
 using Elvencurse2.Model.Engine;
 using Elvencurse2.Model.Enums;
 using Microsoft.AspNet.SignalR;
-using Microsoft.Xna.Framework;
 using GameTime = Elvencurse2.Model.Utilities.GameTime;
 
 namespace Elvencurse2.Engine
@@ -22,30 +21,32 @@ namespace Elvencurse2.Engine
 
         private HighFrequencyTimer _gameLoop;
 
-        private const long DrawFPS = 1000 / 40;
-        long _actualFPS = 0;
+        private const long DrawFps = 1000 / 40;
+        private long _actualFps;
         private object _locker = new object();
         private int DRAW_AFTER = 40 / 20;
-        private long _drawCount = 0;
-        private Model.Utilities.GameTime _gameTime;
+        private long _drawCount;
+        private GameTime _gameTime;
 
         private Worldservice _worldservice;
         private Characterservice _characterservice;
+        private ItemsService _itemsService;
 
         public ElvenGame()
         {
             Trace.WriteLine($"Server bootup at {DateTime.Now}");
 
-            _worldservice = new Worldservice();
-            _characterservice = new Characterservice(this);
-
+            _itemsService = new ItemsService();
+            _worldservice = new Worldservice(_itemsService);
+            _characterservice = new Characterservice(this, _itemsService);
+            
 
             GameChanges = new ConcurrentQueue<Payload>();
             Gameobjects = new List<Gameobject>();
 
             _gameLoop = new HighFrequencyTimer(1000 / (float)20, id => Update(id), () => { }, () => { }, (fps) =>
             {
-                _actualFPS = fps;
+                _actualFps = fps;
             });
 
             _gameTime = new Model.Utilities.GameTime();
@@ -78,7 +79,7 @@ namespace Elvencurse2.Engine
 
                     UpdateGameobjects(_gameTime);
 
-                    if (_actualFPS <= DrawFPS || (++_drawCount) % DRAW_AFTER == 0)
+                    if (_actualFps <= DrawFps || (++_drawCount) % DRAW_AFTER == 0)
                     {
                         //Draw();
                         _drawCount = 0;

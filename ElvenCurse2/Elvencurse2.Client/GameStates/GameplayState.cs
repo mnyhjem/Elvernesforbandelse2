@@ -92,9 +92,8 @@ namespace ElvenCurse2.Client.GameStates
             _mapComponent.LoadMap("Maps/01");
 
             
-
-            _player = new Client.Model.Player(_game.Content);
-
+            // todo Vi skal ikke indlæse vores egen spiller her.. vi skal først få besked af serveren med hvordan vi ser ud...
+            _player = new Client.Model.Player(_game, null);
             SetCameraPosition(_player.Position);
 
             _environment = new EnvironmentComponent(_game, _camera);
@@ -110,7 +109,7 @@ namespace ElvenCurse2.Client.GameStates
                     case Payloadtype.AddPlayer:// add player
                         if (payload.Gameobject.ConnectionId != _signalRComponent.ConnectionId)
                         {
-                            var newPlayer = new ElvenCurse2.Client.Model.Player(_game.Content)
+                            var newPlayer = new ElvenCurse2.Client.Model.Player(_game, payload)
                             {
                                 ConnectionId = payload.Gameobject.ConnectionId
                             };
