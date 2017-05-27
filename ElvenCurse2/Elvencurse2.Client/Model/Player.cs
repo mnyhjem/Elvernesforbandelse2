@@ -55,7 +55,6 @@ namespace ElvenCurse2.Client.Model
             _game = game;
             _payload = payload;
             ThreadPool.QueueUserWorkItem(CreatePlayersprite);
-
         }
 
         public override void Update(GameTime gameTime)
@@ -242,7 +241,7 @@ namespace ElvenCurse2.Client.Model
             animationfactory.Add("hurtRight", new SpriteSheetAnimationData(new[] { 299, 300, 301, 302, 303, 304 }, isLooping: false));
 
             _playerSprite = new AnimatedSprite(animationfactory);
-            _playerSprite.Position = new Vector2(350, 350);
+            _playerSprite.Position = new Vector2(_payload.Gameobject.Position.X, _payload.Gameobject.Position.Y);
             //_playerSprite.Play("spellcastBack").IsLooping = true;
 
             IsLoaded = true;

@@ -68,7 +68,7 @@ namespace ElvenCurse2.Client.GameStates
             _signalRComponent.LostConnection += _signalRComponent_LostConnection;
             _signalRComponent.Connect();
 
-            _drawState = DrawState.Ready;
+            
         }
 
         private void _signalRComponent_LostConnection(object sender, EventArgs e)
@@ -90,12 +90,7 @@ namespace ElvenCurse2.Client.GameStates
             _background = _game.Content.Load<Texture2D>("LoadingBackgrounds/1");
 
             _mapComponent.LoadMap("Maps/01");
-
             
-            // todo Vi skal ikke indlæse vores egen spiller her.. vi skal først få besked af serveren med hvordan vi ser ud...
-            _player = new Client.Model.Player(_game, null);
-            SetCameraPosition(_player.Position);
-
             _environment = new EnvironmentComponent(_game, _camera);
         }
 
@@ -120,10 +115,16 @@ namespace ElvenCurse2.Client.GameStates
                         }
                         else
                         {
+                            if (_player == null)
+                            {
+                                _player = new Model.Player(_game, payload);
+                                _drawState = DrawState.Ready;
+                            }
+                            
                             _player.SetPosition(new Vector2(
                                 payload.Gameobject.Position.X,
                                 payload.Gameobject.Position.Y));
-                            _player.UpdateCameraposition = true;
+                            SetCameraPosition(payload.Gameobject.Position);
                         }
                         break;
                     case Payloadtype.Move:// move
@@ -171,6 +172,11 @@ namespace ElvenCurse2.Client.GameStates
             }
 
             ProcessSignalrQueue();
+
+            if (_drawState == DrawState.Loading)
+            {
+                return;
+            }
 
             _environment.CalculateAmbientColor(DateTime.Now, gameTime);//<-- kunne være tid fra serveren..
 

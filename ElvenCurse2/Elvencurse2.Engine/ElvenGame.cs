@@ -115,13 +115,25 @@ namespace Elvencurse2.Engine
             //        Y = 200
             //    }
             //};
-            var spiller = _characterservice.GetOnlineCharacterForUser(userId);
+            var spiller = _characterservice.GetOnlineCharacterForUser(userId) as Creature;
             if (spiller == null)
             {
                 return false;
             }
             spiller.ConnectionId = contextConnectionId;
-            Gameobjects.Add(spiller);
+            var foundPlayer = Gameobjects.FirstOrDefault(a => a.Id == spiller.Id) as Creature;
+            if (foundPlayer == null)
+            {
+                foundPlayer = spiller;
+                Gameobjects.Add(foundPlayer);
+                Trace.WriteLine($"{foundPlayer.Name} entered the world [lvl {foundPlayer.Level} health {foundPlayer.Health}]");
+            }
+            else
+            {
+                foundPlayer.ConnectionId = contextConnectionId;
+                Trace.WriteLine($"{foundPlayer.Name} reconnected to the world [lvl {foundPlayer.Level} health {foundPlayer.Health}]");
+            }
+            
 
             //CurrentHub.Clients.All.Pong(DateTime.Now);//test
 

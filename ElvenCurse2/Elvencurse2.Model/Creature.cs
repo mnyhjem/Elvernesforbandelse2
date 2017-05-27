@@ -17,7 +17,12 @@ namespace Elvencurse2.Model
 
         public int Level { get; set; }
         public int Basehealth { get; set; }
-        
+
+        public virtual int Health
+        {
+            get { return _health < 0 ? 0 : _health; }
+        }
+
         public Location DefaultLocation { get; set; }
 
         public CharacterAppearance Appearance { get; set; }

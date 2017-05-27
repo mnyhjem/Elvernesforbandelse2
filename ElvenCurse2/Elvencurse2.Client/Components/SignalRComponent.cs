@@ -36,7 +36,7 @@ namespace Elvencurse2.Client.Components
 
         public void Connect()
         {
-            var _connection = new HubConnection(_realm);
+            _connection = new HubConnection(_realm);
             _connection.CookieContainer = new CookieContainer();
             _connection.CookieContainer.Add(Authentication.AuthCookie);
             //_connection.Closed += _connection_Closed;
