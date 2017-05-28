@@ -12,8 +12,25 @@ using GameTime = Elvencurse2.Model.Utilities.GameTime;
 
 namespace Elvencurse2.Engine
 {
+    public class LongEventArgs : EventArgs
+    {
+        public long Value { get; }
+
+        public LongEventArgs(long value)
+        {
+            Value = value;
+        }
+    }
+
     public class ElvenGame:IElvenGame
     {
+        public event EventHandler<LongEventArgs> FpsUpdate;
+
+        private void OnFpsUpdate()
+        {
+            FpsUpdate?.Invoke(this, new LongEventArgs(_actualFps));
+        }
+
         public ConcurrentQueue<Payload> GameChanges { get; set; }
 
         public List<Gameobject> Gameobjects { get; set; }
@@ -85,6 +102,7 @@ namespace Elvencurse2.Engine
                         _drawCount = 0;
                         ProcessGamechanges();
                         //Trace.WriteLine(string.Format("Update {0}", DateTime.Now));
+                        OnFpsUpdate();
                     }
                 }
                 catch (Exception e)
@@ -120,6 +138,7 @@ namespace Elvencurse2.Engine
             {
                 return false;
             }
+            // todo tjek om Location er udfyldt.. det skal den nemlig være...
             spiller.ConnectionId = contextConnectionId;
             var foundPlayer = Gameobjects.FirstOrDefault(a => a.Id == spiller.Id) as Creature;
             if (foundPlayer == null)
@@ -136,7 +155,7 @@ namespace Elvencurse2.Engine
             
 
             //CurrentHub.Clients.All.Pong(DateTime.Now);//test
-
+            // todo vi bør lave noget changemap halløj her, og så kun sende elementer fra den verdensdel spilleren er i..
             GameChanges.Enqueue(new Payload { Gameobject = spiller, Type = Payloadtype.AddPlayer });
             foreach (var o in Gameobjects.Where(a => a.ConnectionId != contextConnectionId))
             {
@@ -161,7 +180,7 @@ namespace Elvencurse2.Engine
                     break;
                 }
 
-                Trace.WriteLine(string.Format("Send packet {0} [{1} X{2},Y{3}]", cnt++, o.Type, o.Gameobject.Position.X, o.Gameobject.Position.Y));
+                Trace.WriteLine(string.Format("Send packet {0} [{1} X{2},Y{3}]", cnt++, o.Type, (int)o.Gameobject.Position.X, (int)o.Gameobject.Position.Y));
 
                 if (string.IsNullOrEmpty(o.Receiver))
                 {

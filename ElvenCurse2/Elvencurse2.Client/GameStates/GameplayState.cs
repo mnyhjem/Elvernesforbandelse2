@@ -88,8 +88,6 @@ namespace ElvenCurse2.Client.GameStates
             _bitmapFont = _game.Content.Load<BitmapFont>("Fonts/montserrat-32");
 
             _background = _game.Content.Load<Texture2D>("LoadingBackgrounds/1");
-
-            _mapComponent.LoadMap("Maps/01");
             
             _environment = new EnvironmentComponent(_game, _camera);
         }
@@ -118,6 +116,8 @@ namespace ElvenCurse2.Client.GameStates
                             if (_player == null)
                             {
                                 _player = new Model.Player(_game, payload);
+                                _mapComponent.LoadMap("Maps/01");
+
                                 _drawState = DrawState.Ready;
                             }
                             
@@ -163,9 +163,7 @@ namespace ElvenCurse2.Client.GameStates
             var deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
             var keyboardState = Keyboard.GetState();
             var mouseState = Mouse.GetState();
-
-            _mapComponent.Update(gameTime, keyboardState);
-
+            
             if (keyboardState.IsKeyDown(Keys.Escape))
             {
                 _game.Exit();
@@ -177,6 +175,8 @@ namespace ElvenCurse2.Client.GameStates
             {
                 return;
             }
+
+            _mapComponent.Update(gameTime, keyboardState);
 
             _environment.CalculateAmbientColor(DateTime.Now, gameTime);//<-- kunne være tid fra serveren..
 

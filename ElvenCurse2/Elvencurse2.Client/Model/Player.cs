@@ -407,11 +407,18 @@ namespace ElvenCurse2.Client.Model
 
         private byte[] GetImage(string path)
         {
+            var sw = new Stopwatch();
+            sw.Start();
+
             var rootPath = System.Environment.CurrentDirectory + "/Content/CS/U/";
             using (var img = Image.FromFile(rootPath + path + ".png"))
             using (var bmp = new Bitmap(img))
             {
-                return ImageToByteArray(bmp);
+                var bytes = ImageToByteArray(bmp);
+
+                sw.Stop();
+                Debug.WriteLine($"GetImage {sw.Elapsed}");
+                return bytes;
             }
         }
 
@@ -426,8 +433,14 @@ namespace ElvenCurse2.Client.Model
 
         private static byte[] ImageToByteArray(Image img)
         {
+            //var sw = new Stopwatch();
+            //sw.Start();
             ImageConverter converter = new ImageConverter();
-            return (byte[])converter.ConvertTo(img, typeof(byte[]));
+            var bytes = (byte[])converter.ConvertTo(img, typeof(byte[]));
+            //sw.Stop();
+            //Debug.WriteLine($"ImageToBytes {sw.Elapsed}");
+
+            return bytes;
         }
 
         public void SetPosition(Vector2 position)

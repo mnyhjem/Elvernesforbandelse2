@@ -14,6 +14,8 @@ namespace Elvencurse2.Server
         {
             Program.Game = new ElvenGame();
 
+            Program.Game.FpsUpdate += Game_FpsUpdate;
+
             Trace.Listeners.RemoveAt(0);
 
             //netsh http add urlacl http://+:1234/ user=Everyone
@@ -22,6 +24,11 @@ namespace Elvencurse2.Server
                 Console.WriteLine("Kører {0}", ConfigurationManager.AppSettings["realm"]);
                 Console.ReadLine();
             }
+        }
+
+        private static void Game_FpsUpdate(object sender, LongEventArgs e)
+        {
+            Console.Title = string.Format("Elvencurse2 {0}fps, Queuelength {1}", e.Value, Game.GameChanges.Count);
         }
     }
 }
