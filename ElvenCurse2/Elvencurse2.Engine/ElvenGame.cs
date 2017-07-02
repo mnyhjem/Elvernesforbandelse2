@@ -140,7 +140,7 @@ namespace Elvencurse2.Engine
             }
             // todo tjek om Location er udfyldt.. det skal den nemlig være...
             spiller.ConnectionId = contextConnectionId;
-            var foundPlayer = Gameobjects.FirstOrDefault(a => a.Id == spiller.Id) as Creature;
+            var foundPlayer = Gameobjects.FirstOrDefault(a => a.Id == spiller.Id && !string.IsNullOrEmpty(a.ConnectionId)) as Creature;
             if (foundPlayer == null)
             {
                 foundPlayer = spiller;
