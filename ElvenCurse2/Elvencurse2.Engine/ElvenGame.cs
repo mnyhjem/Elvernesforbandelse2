@@ -183,15 +183,17 @@ namespace Elvencurse2.Engine
                 {
                     break;
                 }
-                
-                Trace.WriteLine(string.Format("Send packet {0} [{1} X{2},Y{3}] - Location [X:{4} Y:{5} Zone:{6}]", 
-                    cnt++, 
-                    o.Type, 
-                    (int)o.Gameobject.Position.X, 
+
+#if DEBUGOUTPUT
+                Trace.WriteLine(string.Format("Send packet {0} [{1} X{2},Y{3}] - Location [X:{4} Y:{5} Zone:{6}]",
+                    cnt++,
+                    o.Type,
+                    (int)o.Gameobject.Position.X,
                     (int)o.Gameobject.Position.Y,
                     o.Gameobject.Location.X,
                     o.Gameobject.Location.Y,
                     o.Gameobject.Location.Zone));
+#endif
 
                 // hvis det er mapchange, så sender vi til alle at brugeren skal fjernes
                 if (o.Type == Payloadtype.Mapchange)

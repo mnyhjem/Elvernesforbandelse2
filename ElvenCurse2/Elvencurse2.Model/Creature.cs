@@ -10,7 +10,7 @@ namespace Elvencurse2.Model
     public class Creature : Gameobject
     {
         //private float MoveSpeed = 120f;
-        private float _moveSpeed = 140f;
+        private float _moveSpeed = 60f;
 
         private int _health;
         
@@ -104,11 +104,15 @@ namespace Elvencurse2.Model
 
                 var newLocation = _worldservice.PositionToLocation(newPosition, map);
                 // tjek for kollision
-                if (map.Tilemap.Layers[6].Data[(int)newLocation.Y * 100 + (int)newLocation.X] > 0)
+                var collisionLayer = map.Tilemap.Layers.FirstOrDefault(a => a.Name.ToLower() == "collisionlayer" || a.Name.ToLower() == "collision");
+                if (collisionLayer != null)
                 {
-                    return null;
+                    if (collisionLayer.Data[(int)newLocation.Y * 100 + (int)newLocation.X] > 0)
+                    {
+                        return null;
+                    }
                 }
-
+                
                 Position = newPosition;
                 Location = newLocation;
                 

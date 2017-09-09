@@ -14,8 +14,9 @@ namespace Elvencurse2.Server.Hubs
     {
         public ElvenHub()
         {
+#if DEBUGOUTPUT
             Trace.WriteLine("Creating");
-
+#endif
             //Program.Game.GameChanged += Game_GameChanged;
 
             Program.Game.CurrentHub = this;
@@ -68,7 +69,9 @@ namespace Elvencurse2.Server.Hubs
 
         protected override void Dispose(bool disposing)
         {
+#if DEBUGOUTPUT
             Trace.WriteLine("Disposing");
+#endif
             base.Dispose(disposing);
         }
     }
