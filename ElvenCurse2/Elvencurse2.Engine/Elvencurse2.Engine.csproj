@@ -72,6 +72,7 @@
     <Compile Include="Services\Characterservice.cs" />
     <Compile Include="Services\ItemsService.cs" />
     <Compile Include="Services\Worldservice.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Elvencurse2.Model\Elvencurse2.Model.csproj">

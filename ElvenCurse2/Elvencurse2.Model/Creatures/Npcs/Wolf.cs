@@ -4,7 +4,7 @@ namespace Elvencurse2.Model.Creatures.Npcs
 {
     public class Wolf : Creature
     {
-        public Wolf(IElvenGame elvenGame) : base(elvenGame)
+        public Wolf(IElvenGame elvenGame, IWorldservice worldservice) : base(elvenGame, worldservice)
         {
         }
     }

@@ -116,7 +116,7 @@ namespace ElvenCurse2.Client.GameStates
                             if (_player == null)
                             {
                                 _player = new Model.Player(_game, payload);
-                                _mapComponent.LoadMap("Maps/01");
+                                _mapComponent.LoadMap(string.Format("Maps/{0}", _player.Location.Zone));
 
                                 _drawState = DrawState.Ready;
                             }

@@ -22,19 +22,20 @@ namespace ElvenCurse2.Client.Model
 
         public bool UpdateCameraposition { get; set; }
 
-        public Player(IElvenGame elvenGame) : base(elvenGame)
+        public Player(IElvenGame elvenGame, IWorldservice worldservice) : base(elvenGame, worldservice)
         {
         }
 
-        public Player(ContentManager content) : base(null)
+        public Player(ContentManager content) : base(null, null)
         {
             _content = content;
             CreatePlayersprite();
         }
 
-        public override void Update(GameTime gameTime)
+        public override Payload Update(GameTime gameTime)
         {
             //base.Update(gameTime);
+            return null;
         }
 
         public bool Update(float deltaSeconds, KeyboardState keyboardState)

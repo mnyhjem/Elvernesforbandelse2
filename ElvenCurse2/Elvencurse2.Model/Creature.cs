@@ -1,4 +1,5 @@
-﻿using Elvencurse2.Model.Creatures;
+﻿using System.Linq;
+using Elvencurse2.Model.Creatures;
 using Elvencurse2.Model.Creatures.Npcs;
 using Elvencurse2.Model.Engine;
 using Elvencurse2.Model.Enums;
@@ -35,7 +36,7 @@ namespace Elvencurse2.Model
 
         public string Animation { get; set; }
 
-        public Creature(IElvenGame elvenGame):base(elvenGame)
+        public Creature(IElvenGame elvenGame, IWorldservice worldservice) :base(elvenGame, worldservice)
         {
             
         }
@@ -45,7 +46,7 @@ namespace Elvencurse2.Model
             _health = newHealth;
         }
 
-        public override void Update(Utilities.GameTime gameTime)
+        public override Payload Update(Utilities.GameTime gameTime)
         {
             var moveDirection = Vector2.Zero;
             var animation = "";
@@ -85,17 +86,40 @@ namespace Elvencurse2.Model
             if (isMoving && IsMoving)
             {
                 moveDirection.Normalize();
-                Position = Position + Vector2.Transform(moveDirection * _moveSpeed * (float)gameTime.PercentOfSecond, Matrix.CreateRotationZ(0));
+                var newPosition = Position + Vector2.Transform(moveDirection * _moveSpeed * (float)gameTime.PercentOfSecond, Matrix.CreateRotationZ(0));
 
-                // todo Vi bør nok returnere payload.. så vi ikke laver selve ændringen her i klassen, men i stedet gør det i update loopet..
-                ElvenGame.GameChanges.Enqueue(
-                    new Payload
-                    {
-                        Gameobject = this,
-                        Type = Payloadtype.Move,
-                        Animation = animation
-                    });
+                // todo Opdater location objektet
+                // todo Det er også det som gør at kortet skifter.. når Zone bliver ændret.
+                // todo Samtidigt skal vi også her tjekke om det overhovedet er muligt at gå derhen hvor vi vil.
+                // todo Vi kan eventuelt ligge disse tjek i worldservice, da denne bør kende verdenen.
+                var map = _worldservice.Worldsections.FirstOrDefault(a => a.Id == Location.Zone);
+                if (newPosition.X < 0 || newPosition.X > map.Tilemap.Width * map.Tilemap.Tilewidth)
+                {
+                    return null;
+                }
+                if (newPosition.Y < 0 || newPosition.Y > map.Tilemap.Height * map.Tilemap.Tileheight)
+                {
+                    return null;
+                }
+
+                var newLocation = _worldservice.PositionToLocation(newPosition, map);
+                // tjek for kollision
+                if (map.Tilemap.Layers[6].Data[(int)newLocation.Y * 100 + (int)newLocation.X] > 0)
+                {
+                    return null;
+                }
+
+                Position = newPosition;
+                Location = newLocation;
+                
+                return new Payload
+                {
+                    Gameobject = this,
+                    Type = Payloadtype.Move,
+                    Animation = animation
+                };
             }
+            return null;
         }
     }
 }

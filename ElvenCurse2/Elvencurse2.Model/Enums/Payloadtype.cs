@@ -3,6 +3,7 @@
     public enum Payloadtype
     {
         AddPlayer = 0,
-        Move = 1
+        Move = 1,
+        Mapchange = 2
     }
 }

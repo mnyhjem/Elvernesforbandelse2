@@ -53,6 +53,7 @@
     <Compile Include="Creatures\Npcs\HunterNpc.cs" />
     <Compile Include="Creatures\Npcs\Wolf.cs" />
     <Compile Include="Engine\IElvenGame.cs" />
+    <Compile Include="Engine\IWorldservice.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Enums\Payloadtype.cs" />
     <Compile Include="Gameobject.cs" />
@@ -61,7 +62,18 @@
     <Compile Include="Payload.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tilemap\Image.cs" />
+    <Compile Include="Tilemap\Layer.cs" />
+    <Compile Include="Tilemap\Property.cs" />
+    <Compile Include="Tilemap\PropertyCollection.cs" />
+    <Compile Include="Tilemap\Terrain.cs" />
+    <Compile Include="Tilemap\Terrainfile.cs" />
+    <Compile Include="Tilemap\Terraintile.cs" />
+    <Compile Include="Tilemap\Terraintypes.cs" />
+    <Compile Include="Tilemap\Tilemap.cs" />
+    <Compile Include="Tilemap\Tileset.cs" />
     <Compile Include="Utilities\GameTime.cs" />
+    <Compile Include="Worldsection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

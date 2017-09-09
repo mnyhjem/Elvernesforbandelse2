@@ -6,6 +6,7 @@ namespace Elvencurse2.Model
     public class Gameobject
     {
         protected IElvenGame ElvenGame;
+        protected readonly IWorldservice _worldservice;
 
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,14 +17,15 @@ namespace Elvencurse2.Model
 
         public string ConnectionId { get; set; }
 
-        public Gameobject(IElvenGame elvenGame)
+        public Gameobject(IElvenGame elvenGame, IWorldservice worldservice)
         {
             ElvenGame = elvenGame;
+            _worldservice = worldservice;
         }
 
-        public virtual void Update(Utilities.GameTime gameTime)
+        public virtual Payload Update(Utilities.GameTime gameTime)
         {
-
+            return null;
         }
     }
 }

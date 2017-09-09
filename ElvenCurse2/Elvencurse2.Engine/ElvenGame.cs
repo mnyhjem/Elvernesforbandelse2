@@ -55,7 +55,7 @@ namespace Elvencurse2.Engine
 
             _itemsService = new ItemsService();
             _worldservice = new Worldservice(_itemsService);
-            _characterservice = new Characterservice(this, _itemsService);
+            _characterservice = new Characterservice(this, _itemsService, _worldservice);
             
 
             GameChanges = new ConcurrentQueue<Payload>();
@@ -118,7 +118,11 @@ namespace Elvencurse2.Engine
         {
             foreach (var gameobject in Gameobjects)
             {
-                gameobject.Update(gameTime);
+                var p = gameobject.Update(gameTime);
+                if (p != null)
+                {
+                    GameChanges.Enqueue(p);
+                }
             }
         }
 
@@ -157,7 +161,7 @@ namespace Elvencurse2.Engine
             //CurrentHub.Clients.All.Pong(DateTime.Now);//test
             // todo vi bør lave noget changemap halløj her, og så kun sende elementer fra den verdensdel spilleren er i..
             GameChanges.Enqueue(new Payload { Gameobject = spiller, Type = Payloadtype.AddPlayer });
-            foreach (var o in Gameobjects.Where(a => a.ConnectionId != contextConnectionId))
+            foreach (var o in Gameobjects.Where(a => a.ConnectionId != contextConnectionId && a.Location.Zone == spiller.Location.Zone))
             {
                 GameChanges.Enqueue(new Payload
                 {
@@ -179,12 +183,25 @@ namespace Elvencurse2.Engine
                 {
                     break;
                 }
+                
+                Trace.WriteLine(string.Format("Send packet {0} [{1} X{2},Y{3}] - Location [X:{4} Y:{5} Zone:{6}]", 
+                    cnt++, 
+                    o.Type, 
+                    (int)o.Gameobject.Position.X, 
+                    (int)o.Gameobject.Position.Y,
+                    o.Gameobject.Location.X,
+                    o.Gameobject.Location.Y,
+                    o.Gameobject.Location.Zone));
 
-                Trace.WriteLine(string.Format("Send packet {0} [{1} X{2},Y{3}]", cnt++, o.Type, (int)o.Gameobject.Position.X, (int)o.Gameobject.Position.Y));
+                // hvis det er mapchange, så sender vi til alle at brugeren skal fjernes
+                if (o.Type == Payloadtype.Mapchange)
+                {
+                    CurrentHub.Clients.All.PushPayload(o);
+                }
 
                 if (string.IsNullOrEmpty(o.Receiver))
                 {
-                    CurrentHub.Clients.All.PushPayload(o);
+                    CurrentHub.Clients.Clients(Gameobjects.Where(a=>a.Location.Zone == o.Gameobject.Location.Zone).Select(a=>a.ConnectionId).ToList()).PushPayload(o);
                 }
                 else
                 {

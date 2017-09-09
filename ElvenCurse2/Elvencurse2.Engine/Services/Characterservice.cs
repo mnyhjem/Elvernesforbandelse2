@@ -4,6 +4,7 @@ using System.Data;
 using Elvencurse2.Engine.Factories;
 using Elvencurse2.Model;
 using Elvencurse2.Model.Creatures;
+using Elvencurse2.Model.Engine;
 using Microsoft.Xna.Framework;
 using MySql.Data.MySqlClient;
 
@@ -13,11 +14,13 @@ namespace Elvencurse2.Engine.Services
     {
         private readonly ElvenGame _elvenGame;
         private readonly ItemsService _itemsService;
+        private readonly IWorldservice _worldservice;
 
-        public Characterservice(ElvenGame elvenGame, ItemsService itemsService)
+        public Characterservice(ElvenGame elvenGame, ItemsService itemsService, IWorldservice worldservice)
         {
             _elvenGame = elvenGame;
             _itemsService = itemsService;
+            _worldservice = worldservice;
         }
 
         public Gameobject GetOnlineCharacterForUser(string userId)
@@ -66,7 +69,7 @@ c.IsOnline = 1
 
         private Player MapCharacter(IDataRecord dr)
         {
-            var character = new Player(_elvenGame)
+            var character = new Player(_elvenGame, _worldservice)
             {
                 Id = (int)dr["id"],
                 Name = (string)dr["name"],

@@ -15,7 +15,7 @@ namespace Elvencurse2.Model
         {
             Type = (Payloadtype) dynpayload.Type;
             //Gameobject = (Gameobject) dynpayload.Gameobject;
-            Gameobject = new Creature(null);
+            Gameobject = new Creature(null, null);
             ((Creature)Gameobject).Appearance = Newtonsoft.Json.JsonConvert.DeserializeObject<Creatures.CharacterAppearance>(dynpayload.Gameobject.Appearance.ToString());
             ((Creature) Gameobject).Equipment = Newtonsoft.Json.JsonConvert.DeserializeObject<Creatures.CharacterEquipment>(dynpayload.Gameobject.Equipment.ToString());
 
@@ -23,6 +23,15 @@ namespace Elvencurse2.Model
             ((Creature)Gameobject).Level = (int)dynpayload.Gameobject.Level;
 
             Gameobject.Position = new Vector2((float)dynpayload.Gameobject.Position.X, (float)dynpayload.Gameobject.Position.Y);
+            Gameobject.Location = new Location
+            {
+                X = dynpayload.Gameobject.Location.X,
+                Y = dynpayload.Gameobject.Location.Y,
+                Zone = dynpayload.Gameobject.Location.Zone,
+                Name = dynpayload.Gameobject.Location.Name
+            };
+
+
             Gameobject.ConnectionId = (string)dynpayload.Gameobject.ConnectionId;
 
             Receiver = (string) dynpayload.Receiver;

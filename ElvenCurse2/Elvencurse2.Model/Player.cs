@@ -6,7 +6,7 @@ namespace Elvencurse2.Model
     {
         
 
-        public Player(IElvenGame elvenGame) : base(elvenGame)
+        public Player(IElvenGame elvenGame, IWorldservice worldservice) : base(elvenGame, worldservice)
         {
         }
 

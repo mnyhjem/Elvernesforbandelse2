@@ -81,11 +81,6 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/montserrat-32_0.png
 
-#begin Maps/01.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:Maps/01.tmx
-
 #begin Maps/Cliff_tileset.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -181,11 +176,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:charactersprite.png
-
-#begin Maps/02.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:Maps/02.tmx
 
 #begin LoadingBackgrounds/1.jpg
 /importer:TextureImporter
@@ -362,4 +352,24 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Shaders/lightmask1.png
+
+#begin Maps/3.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Maps/3.tmx
+
+#begin Maps/4.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Maps/4.tmx
+
+#begin Maps/5.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Maps/5.tmx
+
+#begin Maps/6.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Maps/6.tmx
 
