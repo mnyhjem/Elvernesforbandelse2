@@ -1,4 +1,5 @@
 ﻿using Elvencurse2.Model;
+using Elvencurse2.Model.Creatures;
 using Elvencurse2.Model.Engine;
 using Elvencurse2.Model.Enums;
 using Microsoft.Xna.Framework;
@@ -22,11 +23,11 @@ namespace ElvenCurse2.Client.Model
 
         public bool UpdateCameraposition { get; set; }
 
-        public Player(IElvenGame elvenGame, IWorldservice worldservice) : base(elvenGame, worldservice)
+        public Player(IElvenGame elvenGame, IWorldservice worldservice) : base(elvenGame, worldservice, Creaturetype.Player)
         {
         }
 
-        public Player(ContentManager content) : base(null, null)
+        public Player(ContentManager content) : base(null, null, Creaturetype.Player)
         {
             _content = content;
             CreatePlayersprite();

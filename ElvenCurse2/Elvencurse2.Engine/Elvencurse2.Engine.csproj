@@ -64,7 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\Pathfinder.cs" />
     <Compile Include="ElvenGame.cs" />
     <Compile Include="Factories\DbFactory.cs" />
     <Compile Include="HighFrequencyTimer.cs" />

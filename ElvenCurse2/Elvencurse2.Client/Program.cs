@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace Elvencurse2.Client
 {
@@ -13,8 +14,17 @@ namespace Elvencurse2.Client
         [STAThread]
         static void Main()
         {
-            using (var game = new ElvenCurse2())
-                game.Run();
+            try
+            {
+                using (var game = new ElvenCurse2())
+                {
+                    game.Run();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }

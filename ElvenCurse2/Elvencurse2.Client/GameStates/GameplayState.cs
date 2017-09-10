@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using Elvencurse2.Client.Components;
+using Elvencurse2.Client.Model;
 using Elvencurse2.Client.StateManager;
 using Elvencurse2.Model;
 using Elvencurse2.Model.Enums;
+using ElvenCurse2.Client.Model;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -22,8 +25,8 @@ namespace ElvenCurse2.Client.GameStates
         private Camera2D _camera;
         
 
-        private List<Client.Model.Player> _players;
-        private Client.Model.Player _player;
+        private List<Creatureentity> _creatureentities;
+        private Playerentity _player;
 
         private SignalRComponent _signalRComponent;
 
@@ -61,8 +64,8 @@ namespace ElvenCurse2.Client.GameStates
             _mapComponent = new MapComponent(_game.GraphicsDevice, _game, _camera);
 
             _fpsCounter = new FramesPerSecondCounter();
-            
-            _players = new List<Client.Model.Player>();
+
+            _creatureentities = new List<Creatureentity>();
             
             _signalRComponent = new SignalRComponent(ConfigurationManager.AppSettings["realm"]);
             _signalRComponent.LostConnection += _signalRComponent_LostConnection;
@@ -99,23 +102,21 @@ namespace ElvenCurse2.Client.GameStates
             {
                 switch (payload.Type)
                 {
-                    case Payloadtype.AddPlayer:// add player
+                    case Payloadtype.AddEntity:// add entity
                         if (payload.Gameobject.ConnectionId != _signalRComponent.ConnectionId)
                         {
-                            var newPlayer = new ElvenCurse2.Client.Model.Player(_game, payload)
-                            {
-                                ConnectionId = payload.Gameobject.ConnectionId
-                            };
-                            newPlayer.SetPosition(new Vector2(
+                            var newEntity = EntityHelper.CreateEntity(_game, payload);
+
+                            newEntity.SetPosition(new Vector2(
                                 payload.Gameobject.Position.X,
                                 payload.Gameobject.Position.Y));
-                            _players.Add(newPlayer);
+                            _creatureentities.Add(newEntity);
                         }
                         else
                         {
                             if (_player == null)
                             {
-                                _player = new Model.Player(_game, payload);
+                                _player = new Playerentity(_game, payload);
                                 _mapComponent.LoadMap(string.Format("Maps/{0}", _player.Location.Zone));
 
                                 _drawState = DrawState.Ready;
@@ -128,7 +129,8 @@ namespace ElvenCurse2.Client.GameStates
                         }
                         break;
                     case Payloadtype.Move:// move
-                        var p = _players.Find(a => a.ConnectionId == payload.Gameobject.ConnectionId);
+                        var p = _creatureentities.Find(a => a.Uuid == payload.Gameobject.Uuid);
+
                         var isThisPlayer = false;
                         if (p == null)
                         {
@@ -142,6 +144,9 @@ namespace ElvenCurse2.Client.GameStates
                                 return;
                             }
                         }
+
+                        Debug.WriteLine("{0} {1} {2}", payload.Gameobject.Name, payload.Gameobject.Position.X, payload.Gameobject.Position.Y);
+
                         p.SetPosition(new Vector2(
                             payload.Gameobject.Position.X,
                             payload.Gameobject.Position.Y));
@@ -201,7 +206,7 @@ namespace ElvenCurse2.Client.GameStates
                 SetCameraPosition(_player.Position);
             }
 
-            foreach (var p in _players)
+            foreach (var p in _creatureentities)
             {
                 p.Update(deltaSeconds, keyboardState);
             }
@@ -269,7 +274,7 @@ namespace ElvenCurse2.Client.GameStates
                     DrawText();
                     _fpsCounter.Draw(gameTime);
                     _player.Draw(_game.SpriteBatch, _camera);
-                    foreach (var p in _players)
+                    foreach (var p in _creatureentities)
                     {
                         p.Draw(_game.SpriteBatch, _camera);
                     }

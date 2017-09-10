@@ -22,7 +22,20 @@ namespace Elvencurse2.Server
             using (WebApp.Start(ConfigurationManager.AppSettings["realm"]))
             {
                 Console.WriteLine("Kører {0}", ConfigurationManager.AppSettings["realm"]);
-                Console.ReadLine();
+
+                var cmd = "";
+                do
+                {
+                    cmd = Console.ReadLine();
+
+                    if (cmd == "show npcs")
+                    {
+                        foreach (var o in Program.Game.Gameobjects)
+                        {
+                            Console.WriteLine("{0} Zone {1} X {2} Y {3}",o.Name, o.Location.Zone, o.Location.X, o.Location.Y);
+                        }
+                    }
+                } while (cmd != "exit");
             }
         }
 

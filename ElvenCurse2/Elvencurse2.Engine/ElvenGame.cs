@@ -160,14 +160,14 @@ namespace Elvencurse2.Engine
 
             //CurrentHub.Clients.All.Pong(DateTime.Now);//test
             // todo vi bør lave noget changemap halløj her, og så kun sende elementer fra den verdensdel spilleren er i..
-            GameChanges.Enqueue(new Payload { Gameobject = spiller, Type = Payloadtype.AddPlayer });
+            GameChanges.Enqueue(new Payload { Gameobject = spiller, Type = Payloadtype.AddEntity });
             foreach (var o in Gameobjects.Where(a => a.ConnectionId != contextConnectionId && a.Location.Zone == spiller.Location.Zone))
             {
                 GameChanges.Enqueue(new Payload
                 {
                     Gameobject = o,
                     Receiver = contextConnectionId,
-                    Type = Payloadtype.AddPlayer
+                    Type = Payloadtype.AddEntity
                 });
             }
             return true;
@@ -176,6 +176,11 @@ namespace Elvencurse2.Engine
         private long cnt = 1;
         private void ProcessGamechanges()
         {
+            if (CurrentHub == null)
+            {
+                return;
+            }
+
             while (GameChanges.Count > 0)
             {
                 Payload o = null;

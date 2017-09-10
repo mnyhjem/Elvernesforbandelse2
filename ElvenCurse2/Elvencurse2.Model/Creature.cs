@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Elvencurse2.Model.Creatures;
+﻿using Elvencurse2.Model.Creatures;
 using Elvencurse2.Model.Creatures.Npcs;
 using Elvencurse2.Model.Engine;
 using Elvencurse2.Model.Enums;
@@ -15,6 +14,8 @@ namespace Elvencurse2.Model
         private int _health;
         
         public CreatureRace Race { get; set; }
+
+        
 
         public int Level { get; set; }
         public int Basehealth
@@ -55,7 +56,7 @@ namespace Elvencurse2.Model
 
         public string Animation { get; set; }
 
-        public Creature(IElvenGame elvenGame, IWorldservice worldservice) :base(elvenGame, worldservice)
+        public Creature(IElvenGame elvenGame, IWorldservice worldservice, Creaturetype type) :base(elvenGame, worldservice, type)
         {
             
         }
@@ -118,34 +119,18 @@ namespace Elvencurse2.Model
                 moveDirection.Normalize();
                 var newPosition = Position + Vector2.Transform(moveDirection * _moveSpeed * (float)gameTime.PercentOfSecond, Matrix.CreateRotationZ(0));
 
-                // todo Opdater location objektet
-                // todo Det er også det som gør at kortet skifter.. når Zone bliver ændret.
-                // todo Samtidigt skal vi også her tjekke om det overhovedet er muligt at gå derhen hvor vi vil.
-                // todo Vi kan eventuelt ligge disse tjek i worldservice, da denne bør kende verdenen.
-                var map = _worldservice.Worldsections.FirstOrDefault(a => a.Id == Location.Zone);
-                if (newPosition.X < 0 || newPosition.X > map.Tilemap.Width * map.Tilemap.Tilewidth)
+                var newLocation = _worldservice.ValidatePosition(newPosition, Location);
+                if (newLocation == null)
                 {
+                    InvalidMoveCounter++;
                     return null;
-                }
-                if (newPosition.Y < 0 || newPosition.Y > map.Tilemap.Height * map.Tilemap.Tileheight)
-                {
-                    return null;
-                }
-
-                var newLocation = _worldservice.PositionToLocation(newPosition, map);
-                // tjek for kollision
-                var collisionLayer = map.Tilemap.Layers.FirstOrDefault(a => a.Name.ToLower() == "collisionlayer" || a.Name.ToLower() == "collision");
-                if (collisionLayer != null)
-                {
-                    if (collisionLayer.Data[(int)newLocation.Y * 100 + (int)newLocation.X] > 0)
-                    {
-                        return null;
-                    }
                 }
                 
                 Position = newPosition;
                 Location = newLocation;
-                
+                InvalidMoveCounter = 0;
+
+
                 return new Payload
                 {
                     Gameobject = this,
@@ -155,5 +140,7 @@ namespace Elvencurse2.Model
             }
             return null;
         }
+
+        protected int InvalidMoveCounter { get; set; }
     }
 }

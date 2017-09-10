@@ -74,11 +74,17 @@
     <Compile Include="Tilemap\Tileset.cs" />
     <Compile Include="Utilities\ExperienceCalculations.cs" />
     <Compile Include="Utilities\GameTime.cs" />
+    <Compile Include="Utilities\MathLib.cs" />
     <Compile Include="Worldsection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Elvencurse2.AI\Elvencurse2.AI.csproj">
+      <Project>{9546af69-f2fb-4a20-9eec-099ede06c94e}</Project>
+      <Name>Elvencurse2.AI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

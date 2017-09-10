@@ -297,7 +297,7 @@ namespace ElvenCurse2.GameStates
             {
                 switch (payload.Type)
                 {
-                    case Payloadtype.AddPlayer:// add player
+                    case Payloadtype.AddEntity:// add player
                         if (payload.Gameobject.ConnectionId != _connectionId)
                         {
                             var newPlayer = new Client.Model.Player(Game.Content)

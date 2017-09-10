@@ -1,4 +1,5 @@
-﻿using Elvencurse2.Model.Engine;
+﻿using Elvencurse2.Model.Creatures;
+using Elvencurse2.Model.Engine;
 using Elvencurse2.Model.Utilities;
 
 namespace Elvencurse2.Model
@@ -7,7 +8,7 @@ namespace Elvencurse2.Model
     {
         
 
-        public Player(IElvenGame elvenGame, IWorldservice worldservice) : base(elvenGame, worldservice)
+        public Player(IElvenGame elvenGame, IWorldservice worldservice) : base(elvenGame, worldservice, Creaturetype.Player)
         {
         }
 

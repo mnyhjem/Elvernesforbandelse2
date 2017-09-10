@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace Elvencurse2.Engine.AI
+namespace Elvencurse2.AI.Pathfinders
 {
     public static class Pathfinder
     {
@@ -25,10 +25,17 @@ namespace Elvencurse2.Engine.AI
 
             var mapSolver = new MapSolver();
 
+            if (start.X == destination.X && start.Y == destination.Y)
+            {
+                solution.Add(destination);
+                return solution;
+            }
+
             mapSolver.Graph(map, width, height, start, destination, openList, closedList);
             if (!mapSolver.Solution.HasValue)
             {
-                throw new Exception("No solution");
+                return null;
+                //throw new Exception("No solution");
             }
 
             var cost = mapSolver.Solution.Value.Cost;

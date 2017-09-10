@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 using Elvencurse2.Engine.Factories;
@@ -16,6 +18,8 @@ namespace Elvencurse2.Engine.Services
 {
     public class Worldservice: IWorldservice
     {
+        private readonly Random _random = new Random();
+
         private readonly ItemsService _itemsService;
         public List<Worldsection> Worldsections { get; private set; }
         public Location PositionToLocation(Vector2 newPosition, Worldsection map)
@@ -25,6 +29,72 @@ namespace Elvencurse2.Engine.Services
             location.Y = (int)newPosition.Y / map.Tilemap.Tileheight;
 
             return location;
+        }
+
+        public Location ValidatePosition(Vector2 newPosition, Location playerLocation)
+        {
+            var map = Worldsections.FirstOrDefault(a => a.Id == playerLocation.Zone);
+            if (map == null)
+            {
+                return null;
+            }
+
+            if (newPosition.X < 0 || newPosition.X > map.Tilemap.Width * map.Tilemap.Tilewidth)
+            {
+                return null;
+            }
+            if (newPosition.Y < 0 || newPosition.Y > map.Tilemap.Height * map.Tilemap.Tileheight)
+            {
+                return null;
+            }
+
+            var newLocation = PositionToLocation(newPosition, map);
+
+            // tjek for kollision
+            var collisionLayer = map.Tilemap.Layers.FirstOrDefault(a => a.Name.ToLower() == "collisionlayer" || a.Name.ToLower() == "collision" || a.Name.ToLower() == "blocking");
+            if (collisionLayer != null)
+            {
+                var point = (int) newLocation.Y * map.Tilemap.Width + (int) newLocation.X;
+                if (collisionLayer.Data[point] > 0)
+                {
+                    return null;
+                }
+            }
+
+            return newLocation;
+        }
+
+        public Point GetRandomPoint(Location origin, int maxDistanceFromOrigin)
+        {
+            var map = Worldsections.FirstOrDefault(a => a.Id == origin.Zone);
+            if (map == null)
+            {
+                return new Point(0, 0);
+            }
+            var collisionLayer = map.Tilemap.Layers.FirstOrDefault(a => a.Name.ToLower() == "collisionlayer" || a.Name.ToLower() == "collision" || a.Name.ToLower() == "blocking");
+            if (collisionLayer == null)
+            {
+                return new Point(0,0);
+            }
+
+            int point;
+            int x, y;
+            int deadlock = 50;
+            do
+            {
+                x = _random.Next((int) origin.X - maxDistanceFromOrigin, (int) origin.X + maxDistanceFromOrigin);
+                y = _random.Next((int) origin.Y - maxDistanceFromOrigin, (int) origin.Y + maxDistanceFromOrigin);
+
+                point = (int) x * map.Tilemap.Width + y;
+
+                if (deadlock-- < 0)
+                {
+                    Trace.WriteLine("Kunne ikke finde et gyldigt punkt");
+                    break;
+                }
+            } while (x > 0 && y > 0 && x < map.Tilemap.Width && y < map.Tilemap.Height && collisionLayer.Data[point] > 0);
+
+            return new Point(x, y);
         }
 
 
