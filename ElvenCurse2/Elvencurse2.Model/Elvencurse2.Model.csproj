@@ -72,6 +72,7 @@
     <Compile Include="Tilemap\Terraintypes.cs" />
     <Compile Include="Tilemap\Tilemap.cs" />
     <Compile Include="Tilemap\Tileset.cs" />
+    <Compile Include="Utilities\ExperienceCalculations.cs" />
     <Compile Include="Utilities\GameTime.cs" />
     <Compile Include="Worldsection.cs" />
   </ItemGroup>

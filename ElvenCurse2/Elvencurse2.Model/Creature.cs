@@ -17,11 +17,30 @@ namespace Elvencurse2.Model
         public CreatureRace Race { get; set; }
 
         public int Level { get; set; }
-        public int Basehealth { get; set; }
+        public int Basehealth
+        {
+            get
+            {
+                return _baseHealth;
+            }
+            set
+            {
+                _baseHealth = value;
+                ResetHealth();
+            }
+        }
+        private int _baseHealth;
 
         public virtual int Health
         {
             get { return _health < 0 ? 0 : _health; }
+        }
+        public int MaxHealth
+        {
+            get
+            {
+                return GetMaxHealth();
+            }
         }
 
         public Location DefaultLocation { get; set; }
@@ -44,6 +63,17 @@ namespace Elvencurse2.Model
         public void SetHealth(int newHealth)
         {
             _health = newHealth;
+        }
+
+        protected int GetMaxHealth()
+        {
+            return _baseHealth * Level;
+            //return _baseHealth + (15 * Level) - 15;
+        }
+
+        public void ResetHealth()
+        {
+            _health = GetMaxHealth();
         }
 
         public override Payload Update(Utilities.GameTime gameTime)
